@@ -7,12 +7,20 @@
 //
 
 #import "SCTAppDelegate.h"
+#import "SCTTrackManager.h"
+#import <SCUI.h>
 
 @implementation SCTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [SCSoundCloud setClientID:@"bfb0f946be1c925c53f3926f8f118363"
+                       secret:@"2abf1fc69c046404988d3d11c20ffe40"
+                  redirectURL:[NSURL URLWithString:@"sampleproject://oauth"]];
+    
+//    [SCSoundCloud removeAccess];
     return YES;
 }
 							

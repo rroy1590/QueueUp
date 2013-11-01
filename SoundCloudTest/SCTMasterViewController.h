@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface SCTMasterViewController : UITableViewController
+@interface SCTMasterViewController : UITableViewController<AVAudioPlayerDelegate>
+{
+    IBOutlet UINavigationItem* nav;
+}
+
+@property (nonatomic, strong) NSArray *tracks;
 
 @end

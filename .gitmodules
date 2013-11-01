@@ -1,0 +1,15 @@
+[submodule "CocoaSoundCloudAPI"]
+	path = CocoaSoundCloudAPI
+	url = git://github.com/soundcloud/CocoaSoundCloudAPI.git
+[submodule "OAuth2Client"]
+	path = OAuth2Client
+	url = git://github.com/nxtbgthng/OAuth2Client.git
+[submodule "JSONKit"]
+	path = JSONKit
+	url = git://github.com/nxtbgthng/JSONKit.git
+[submodule "OHAttributedLabel"]
+	path = OHAttributedLabel
+	url = git://github.com/nxtbgthng/OHAttributedLabel.git
+[submodule "CocoaSoundCloudUI"]
+	path = CocoaSoundCloudUI
+	url = git://github.com/soundcloud/CocoaSoundCloudUI.git

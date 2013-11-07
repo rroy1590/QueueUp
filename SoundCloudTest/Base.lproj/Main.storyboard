@@ -142,7 +142,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8BT-nQ-17M"/>
                     <connections>
-                        <outlet property="getFeedButton" destination="xlg-1c-D63" id="kgI-rs-RGh"/>
+                        <outlet property="favoritesButton" destination="xlg-1c-D63" id="jh2-G6-ahj"/>
                         <outlet property="loginButton" destination="6wy-Lg-kn6" id="xbT-KR-bUT"/>
                         <outlet property="logoutButton" destination="s7R-tk-eH3" id="nlY-Nw-ebd"/>
                         <outlet property="queueUpButton" destination="cej-wM-deg" id="1l6-U3-sfy"/>
@@ -162,7 +162,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2pz-XF-uhl" style="IBUITableViewCellStyleDefault" id="m0d-ak-lc9">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0d-ak-lc9" id="IWi-p7-aYr">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>

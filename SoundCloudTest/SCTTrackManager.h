@@ -11,6 +11,7 @@
 #import <AVFoundation/AVAudioPlayer.h>
 #import <SCUI.h>
 
+#define STREAM_URL @"https://api.soundcloud.com/me/activities/tracks/affiliated.json"
 #define FAVORITES_URL @"https://api.soundcloud.com/me/favorites.json"
 #define BACKUP_URL @"https://api.soundcloud.com/users/13932803/favorites.json"
 
@@ -39,6 +40,6 @@
 - (void) loadData;
 - (void) loadUserDataWithHandler:(SCRequestResponseHandler) aResponseHandler;
 - (void) loadFavoritesWithHandler:(SCRequestResponseHandler) aResponseHandler;
-- (void) loadFavoritesFrom:(NSString*)url withHandler:(SCRequestResponseHandler)aResponseHandler;
+- (void) loadDataFrom:(NSString*)url withHandler:(SCRequestResponseHandler)aResponseHandler;
 
 @end

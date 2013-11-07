@@ -52,11 +52,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginFailCallback) name:LOGIN_FAIL object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessCallback) name:LOGIN_SUCCESS object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadedFavorites:) name:LOADED_FAVORITES object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadedFavorites) name:LOADED_FAVORITES object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadedUserData:) name:LOADED_USER object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadedStream) name:LOADED_STREAM object:nil];
     
     // Do any additional setup after loading the view.
-    getFeedButton.alpha = 0;
+    favoritesButton.alpha = 0;
     queueUpButton.alpha = 0;
     
 
@@ -112,10 +113,13 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
-- (void) loadedFavorites: (NSArray*) favorites
+- (void) loadedStream
 {
-    getFeedButton.alpha = 1;
     queueUpButton.alpha = 1;
+}
+- (void) loadedFavorites
+{
+    favoritesButton.alpha = 1;
 }
 
 - (void) loginSuccessCallback
@@ -155,7 +159,7 @@
     self.avatar.image = nil;
     logoutButton.alpha = 0;
     loginButton.alpha = 1;
-    getFeedButton.alpha = 0;
+    favoritesButton.alpha = 0;
     queueUpButton.alpha = 0;
     [UIView commitAnimations];
 }
@@ -187,10 +191,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"QueueUpSegue"]) {
-        [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] getFavorites]];
+        [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] fullTrackList]];
     } else if([[segue identifier] isEqualToString:@"FavoritesSegue"])
     {
-        [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] fullTrackList]];
+        [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] getFavorites]];
     }
 }
 

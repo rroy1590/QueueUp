@@ -14,6 +14,7 @@
 #define LOGIN_FAIL @"loginfail"
 
 #define LOADED_FAVORITES @"loadedfavorites"
+#define LOADED_STREAM @"loadedstream"
 #define LOADED_USER @"loadeduser"
 
 #define SWIPE_YES @"swipeyes"
@@ -24,5 +25,8 @@
 
 #define TEST_USER_LOGIN @"rroytest"
 #define TEST_USER_PASS @"password1"
+
+#define CLIENT_ID @"bfb0f946be1c925c53f3926f8f118363"
+#define CLIENT_SECRET @"2abf1fc69c046404988d3d11c20ffe40"
 
 #endif

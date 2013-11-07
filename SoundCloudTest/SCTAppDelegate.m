@@ -16,8 +16,8 @@
 {
     // Override point for customization after application launch.
     
-    [SCSoundCloud setClientID:@"bfb0f946be1c925c53f3926f8f118363"
-                       secret:@"2abf1fc69c046404988d3d11c20ffe40"
+    [SCSoundCloud setClientID:CLIENT_ID
+                       secret:CLIENT_SECRET
                   redirectURL:[NSURL URLWithString:@"sampleproject://oauth"]];
     
 //    [SCSoundCloud removeAccess];
@@ -28,7 +28,7 @@
 {
     BOOL handled = [SCSoundCloud handleRedirectURL:url];
     if (!handled) {
-        NSLog(@"The URL (%@) could not be handled by the SoundCloud API. Maybe you want to do something with it.", url);
+        NSLog(@"The URL (%@) could not be handled by the SoundCloud API.", url);
         return NO;
     }
     return YES;

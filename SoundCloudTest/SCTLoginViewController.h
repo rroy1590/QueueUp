@@ -13,7 +13,7 @@
 {
     IBOutlet UIButton* loginButton;
     IBOutlet UIButton* logoutButton;
-    IBOutlet UIButton* getFeedButton;
+    IBOutlet UIButton* favoritesButton;
     IBOutlet UIButton* queueUpButton;
 }
 

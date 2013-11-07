@@ -28,7 +28,7 @@
         [[SCSoundCloud shared] requestAccessWithUsername:TEST_USER_LOGIN password:TEST_USER_PASS];
     }
     
-    // loop until the flag is set from inside the task
+    // loop until the account info/auth tokens are loaded and available
     while (![SCSoundCloud account]) {
         // spend 1 second processing events on each loop
         NSDate *oneSecond = [NSDate dateWithTimeIntervalSinceNow:1];
@@ -77,7 +77,7 @@
 {
     __block bool finished = false;
     
-    [[SCTTrackManager sharedSingleton] loadFavoritesFrom:BACKUP_URL withHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+    [[SCTTrackManager sharedSingleton] loadDataFrom:BACKUP_URL withHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         // Handle the response
         XCTAssertNil(error, @"There should be no error");
         // Check the statuscode and parse the data

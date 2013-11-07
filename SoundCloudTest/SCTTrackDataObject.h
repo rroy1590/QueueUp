@@ -16,4 +16,6 @@
 -(NSString*) getTitle;
 -(NSString*) getSCAppUrl;
 -(NSString*) getSCSiteUrl;
+-(NSString*) getStreamURL;
+-(NSString*) getInfoString;
 @end

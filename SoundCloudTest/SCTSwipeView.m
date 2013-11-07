@@ -21,11 +21,12 @@
 @interface SCTSwipeView()
 @property (nonatomic, strong) NSDictionary* currentDataItem;
 @property NSUInteger numOfTracks;
-@property (nonatomic, strong) UIView* swipeTarget;
+@property (nonatomic, strong) SCTTrackCardView* swipeTarget;
 @property BOOL madeSelection;
 @property double firstX;
 @property double firstY;
 @property double currentIndex;
+@property BOOL flipped;
 @end
 
 @implementation SCTSwipeView
@@ -91,7 +92,9 @@
     
     self.swipeTarget = [[SCTTrackCardView alloc] initWithFrame:CGRectMake(START_X,START_Y,DEFAULT_LENGTH,DEFAULT_LENGTH)
                                                      withTitle:[track getTitle]
-                                                   andImageUrl:[track getArtworkUrl]];
+                                                   andImageUrl:[track getArtworkUrl]
+                                                    andTrackInfo:[track getInfoString]];
+    self.flipped = NO;
     
     [self addSubview:self.swipeTarget];
     [self bringSubviewToFront:self.swipeTarget];
@@ -100,12 +103,35 @@
     
 }
 
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        [UIView transitionWithView:self.swipeTarget
+                          duration:1
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{
+                            
+                            if (!self.flipped) {
+                                [self.swipeTarget showBack];
+                                self.flipped = YES;
+                            } else {
+                                [self.swipeTarget showFront];
+                                self.flipped = NO;
+                            }
+                            
+                        } completion:nil];
+    }
+}
+
 -(void) addGesture {
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                     action:@selector(move:)];
     [panRecognizer setMinimumNumberOfTouches:1];
     [panRecognizer setMaximumNumberOfTouches:1];
     [self.swipeTarget addGestureRecognizer:panRecognizer];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    
+    [self.swipeTarget  addGestureRecognizer:tapGesture];
 }
 
 -(void)move:(id)sender {

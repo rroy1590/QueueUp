@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SCTTrackCardView : UIView
-- (id)initWithFrame:(CGRect)frame withTitle: (NSString*) title andImageUrl: (NSString*) imgUrl;
+- (id)initWithFrame:(CGRect)frame withTitle: (NSString*) title andImageUrl: (NSString*) imgUrl andTrackInfo: (NSString*) trackData;
+-(void) showFront;
+-(void) showBack;
 @end

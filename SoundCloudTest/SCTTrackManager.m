@@ -108,6 +108,21 @@ static SCTTrackManager* singleton;
     return _favorites;
 }
 
+- (void) setFullTrackList:(NSArray *)fullTrackList
+{
+    //only keep the stuff we can stream
+    NSMutableArray* newArr = [NSMutableArray array];
+    for(NSDictionary* trackData in fullTrackList)
+    {
+        if ([[trackData objectForKey:@"origin"] objectForKey:@"stream_url"])
+        {
+            [newArr addObject:trackData];
+        }
+    }
+    
+    _fullTrackList = newArr;
+}
+
 - (void) setFavorites:(NSArray *)favorites
 {
     //only keep the stuff we can stream
@@ -142,10 +157,10 @@ static SCTTrackManager* singleton;
 
 - (void) loadFavoritesWithHandler:(SCRequestResponseHandler)aResponseHandler
 {
-    [self loadFavoritesFrom:FAVORITES_URL withHandler:aResponseHandler];
+    [self loadDataFrom:FAVORITES_URL withHandler:aResponseHandler];
 }
 
-- (void) loadFavoritesFrom:(NSString*)url withHandler:(SCRequestResponseHandler)aResponseHandler
+- (void) loadDataFrom:(NSString*)url withHandler:(SCRequestResponseHandler)aResponseHandler
 {
     [SCRequest performMethod:SCRequestMethodGET
                   onResource:[NSURL URLWithString:url]
@@ -208,11 +223,10 @@ static SCTTrackManager* singleton;
             
             //if the current logged in user has no favorites list, load mine :)
             self.favorites = (NSArray*)jsonResponse;
-            self.fullTrackList = (NSArray*)jsonResponse;
             if([self.favorites count] > 0)
             {
                 [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_FAVORITES
-                                                                    object:self.favorites];
+                                                                    object:nil];
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                 
             } else{
@@ -222,6 +236,27 @@ static SCTTrackManager* singleton;
     };
     
     [self loadFavoritesWithHandler:favoritesHandler];
+    
+    SCRequestResponseHandler streamHandler;
+    streamHandler = ^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSError *jsonError = nil;
+        NSJSONSerialization *jsonResponse = [NSJSONSerialization
+                                             JSONObjectWithData:data
+                                             options:0
+                                             error:&jsonError];
+        if (!jsonError && [jsonResponse isKindOfClass:[NSDictionary class]]) {
+            NSDictionary* response = (NSDictionary*)jsonResponse;
+            NSArray* collection = (NSArray*)[response objectForKey:@"collection"];
+            
+            self.fullTrackList = collection;
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_STREAM
+                                                                object:nil];
+        }
+    };
+    
+    [self loadDataFrom:STREAM_URL withHandler:streamHandler];
+    
 }
 
 - (void) loadBackupFavorites
@@ -236,14 +271,13 @@ static SCTTrackManager* singleton;
         if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
             
             self.favorites = (NSArray*)jsonResponse;
-            self.fullTrackList = (NSArray*)jsonResponse;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_FAVORITES
                                                                     object:self.favorites];
         }
     };
     
-    [self loadFavoritesFrom:BACKUP_URL withHandler:handler];
+    [self loadDataFrom:BACKUP_URL withHandler:handler];
 }
 
 # pragma mark - Audio Handlers
@@ -308,6 +342,7 @@ static SCTTrackManager* singleton;
 - (void) loadAndPlayTrack: (NSDictionary*) trackData
 {
     self.trackDescription = trackData;
+    SCTTrackDataObject* dataObj = [[SCTTrackDataObject alloc] initWithData:trackData];
     
     if([self.controller playing])
     {
@@ -316,7 +351,7 @@ static SCTTrackManager* singleton;
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    NSString *streamURL = [trackData objectForKey:@"stream_url"];
+    NSString *streamURL = [dataObj getStreamURL];
     
     NSData* existing = [self.musicCache objectForKey:streamURL];
     

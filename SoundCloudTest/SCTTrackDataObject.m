@@ -8,6 +8,8 @@
 
 #import "SCTTrackDataObject.h"
 
+#define PRIV_URL_PATH @"https://api.soundcloud.com/tracks/%@/stream?client_id=%@"
+
 @interface SCTTrackDataObject()
 @property (nonatomic,strong) NSDictionary* trackData;
 @end
@@ -18,9 +20,38 @@
 {
     if (self =[super init])
     {
-        self.trackData = data;
+        if([data objectForKey:@"origin"])
+        {
+            self.trackData = [data objectForKey:@"origin"];
+        } else {
+            self.trackData = data;
+        }
     }
     return self;
+}
+
+-(NSString*) getInfoString
+{
+    CGFloat duration = [[self.trackData objectForKey:@"duration"] floatValue] / 1000.0f;
+    
+    NSString *durationString = duration != 0.0f ? [NSString stringWithFormat:@"%d:%02d", (int)duration / 60, (int)duration % 60] : nil;
+    
+    NSDictionary* user = [self.trackData objectForKey:@"user"];
+    
+    NSString* playCount = [NSString stringWithFormat:@"%@",[self.trackData objectForKey:@"playback_count"]];
+    
+    NSString* favCount = [NSString stringWithFormat:@"%@",[self.trackData objectForKey:@"favoritings_count"]];
+    
+    NSString* info = [NSString stringWithFormat:@"User: %@ \n\nLength: %@ \n\nPlay Count: %@ \n\nFavorites: %@",[user objectForKey:@"username"],durationString, playCount, favCount];
+    
+    return info;
+}
+
+-(NSString*) getStreamURL
+{
+    NSString* streamURL = [self.trackData objectForKey:@"stream_url"];
+    
+    return streamURL;
 }
 
 -(NSString*) getArtworkUrl

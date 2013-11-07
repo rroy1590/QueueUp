@@ -191,7 +191,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"QueueUpSegue"]) {
-        [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] fullTrackList]];
+        if([[[SCTTrackManager sharedSingleton] fullTrackList] count]  > 0)
+        {
+            [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] fullTrackList]];
+        } else {
+            [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] getFavorites]];
+        }
     } else if([[segue identifier] isEqualToString:@"FavoritesSegue"])
     {
         [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] getFavorites]];

@@ -2,10 +2,11 @@
 *.BASE.*.pbxproj
 *.LOCAL.*.pbxproj
 *.REMOTE.*.pbxproj
+*.pbxproj
 *.orig
 *.xcuserstate
 *.xcbkptlist
-xcuserdata
+*xcuserdata
 .idea
 ShellDamage/Resources/_AutoReference/*
 _AutoMacros.h

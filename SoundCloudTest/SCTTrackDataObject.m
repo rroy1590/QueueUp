@@ -64,6 +64,17 @@
     return imgUrl;
 }
 
+-(CGFloat) getDuration
+{
+    CGFloat duration = [[self.trackData objectForKey:@"duration"] floatValue] / 1000.0f;
+    return duration;
+}
+
+-(NSString*) getArtist
+{
+    return [self.trackData objectForKey:@"artist"];
+}
+
 -(NSString*) getTitle
 {
     return [self.trackData objectForKey:@"title"];

@@ -18,4 +18,7 @@
 -(NSString*) getSCSiteUrl;
 -(NSString*) getStreamURL;
 -(NSString*) getInfoString;
+-(CGFloat) getDuration;
+-(NSString*) getArtist;
+
 @end

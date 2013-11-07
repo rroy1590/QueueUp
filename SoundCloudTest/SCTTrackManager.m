@@ -414,7 +414,9 @@ static SCTTrackManager* singleton;
 
 -(NSString *)musicPlayer:(BeamMusicPlayerViewController *)player artistForTrack:(NSUInteger)trackNumber {
     
-    return [self.playQueue objectAtIndex:trackNumber][@"artist"];
+    SCTTrackDataObject* trackData = [[SCTTrackDataObject alloc] initWithData:[self.playQueue objectAtIndex:trackNumber]];
+    
+    return [trackData getArtist];
 }
 
 -(NSString *)musicPlayer:(BeamMusicPlayerViewController *)player titleForTrack:(NSUInteger)trackNumber {
@@ -431,7 +433,9 @@ static SCTTrackManager* singleton;
 
 -(CGFloat)musicPlayer:(BeamMusicPlayerViewController *)player lengthForTrack:(NSUInteger)trackNumber {
 
-    return [[self.playQueue objectAtIndex:trackNumber][@"duration"] floatValue] / 1000.0f;
+    SCTTrackDataObject* trackData = [[SCTTrackDataObject alloc] initWithData:[self.playQueue objectAtIndex:trackNumber]];
+    
+    return [trackData getDuration];
 }
 
 -(void)musicPlayerDidStartPlaying:(BeamMusicPlayerViewController *)player {

@@ -207,10 +207,10 @@
 #else
     // Since there is a bug/glitch in iOS with setting the thumb, we need to use an image with 5pt transparency at the bottom
     UIImage* knobImg = [UIImage imageNamed:@"BeamMusicPlayerController.bundle/images/mpSpeakerSliderKnob.png"];
-    [self.volumeView setVolumeThumbImage:knobImg forState:UIControlStateNormal];
-    [self.volumeView setVolumeThumbImage:knobImg forState:UIControlStateHighlighted];
     [self.volumeView setMinimumVolumeSliderImage:minImg forState:UIControlStateNormal];
     [self.volumeView setMaximumVolumeSliderImage:maxImg forState:UIControlStateNormal];
+    [self.volumeView setVolumeThumbImage:knobImg forState:UIControlStateNormal];
+    [self.volumeView setVolumeThumbImage:knobImg forState:UIControlStateHighlighted];
 #endif
     
     // explicitly tint buttons

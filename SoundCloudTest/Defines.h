@@ -22,4 +22,7 @@
 #define STARTED_PLAYING @"playerstarted"
 #define FINISHED_PLAYING @"playerstopped"
 
+#define TEST_USER_LOGIN @"rroytest"
+#define TEST_USER_PASS @"password1"
+
 #endif

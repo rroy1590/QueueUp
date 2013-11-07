@@ -190,7 +190,7 @@
         [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] getFavorites]];
     } else if([[segue identifier] isEqualToString:@"FavoritesSegue"])
     {
-        [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] getFavorites]];
+        [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] fullTrackList]];
     }
 }
 

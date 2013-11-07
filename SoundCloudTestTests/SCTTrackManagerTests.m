@@ -7,6 +7,9 @@
 //
 #import <XCTest/XCTest.h>
 #import "SCTTrackManager.h"
+#import "SCSoundCloud.h"
+#import "SCSoundCloud+Private.h"
+#import "Defines.h"
 
 @interface SCTTrackManagerTests : XCTestCase
 @end
@@ -18,6 +21,19 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    //setup test account login details
+    if(![SCSoundCloud account])
+    {
+        [[SCSoundCloud shared] requestAccessWithUsername:TEST_USER_LOGIN password:TEST_USER_PASS];
+    }
+    
+    // loop until the flag is set from inside the task
+    while (![SCSoundCloud account]) {
+        // spend 1 second processing events on each loop
+        NSDate *oneSecond = [NSDate dateWithTimeIntervalSinceNow:1];
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:oneSecond];
+    }
 }
 
 - (void) testLogin
@@ -61,7 +77,7 @@
 {
     __block bool finished = false;
     
-    [[SCTTrackManager sharedSingleton] loadFavoritesWithHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+    [[SCTTrackManager sharedSingleton] loadFavoritesFrom:BACKUP_URL withHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         // Handle the response
         XCTAssertNil(error, @"There should be no error");
         // Check the statuscode and parse the data
@@ -74,6 +90,8 @@
         
         XCTAssertTrue([jsonResponse isKindOfClass:[NSArray class]],@"jsonResponse should be array");
 
+        [SCTTrackManager sharedSingleton].favorites = (NSArray*)jsonResponse;
+        
         NSLog(@"%@",jsonResponse);
         finished = true;
     }];
@@ -84,13 +102,12 @@
         NSDate *oneSecond = [NSDate dateWithTimeIntervalSinceNow:1];
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:oneSecond];
     }
-}
-
-- (void) testQueuing
-{
+    
+    //Testing queueing and playing tracks:
+    
     NSArray* favorites = [[SCTTrackManager sharedSingleton] getFavorites];
     
-    XCTAssertTrue(favorites != nil, @"Favorites should have been loaded in previous test");
+    XCTAssertTrue((favorites != nil && [favorites count] > 0), @"Favorites should have been loaded in previous test");
     
     NSDictionary* trackOne = [favorites objectAtIndex:0];
     NSDictionary* trackTwo = [favorites objectAtIndex:1];
@@ -99,16 +116,16 @@
     
     XCTAssertTrue([[[SCTTrackManager sharedSingleton] playQueue] count] > 0, @"Player should have queued: %@", [trackOne objectForKey:@"title"]);
     
-    [[SCTTrackManager sharedSingleton] playTrack:trackTwo immediately:YES]; //will launch safari/sc app
+    [[SCTTrackManager sharedSingleton] playTrack:trackTwo immediately:NO];
     
-    XCTAssertTrue([[[SCTTrackManager sharedSingleton] playQueue] count] == 1, @"Player should only have queued: %@", [trackOne objectForKey:@"title"]);
+    XCTAssertTrue([[[SCTTrackManager sharedSingleton] playQueue] count] == 2, @"Player should only have queued: %@", [trackOne objectForKey:@"title"]);
     
     NSArray* playQueue = [[SCTTrackManager sharedSingleton] playQueue];
     
     NSDictionary* queuedTrack = [playQueue objectAtIndex:0];
     NSString* queuedTitle = [queuedTrack objectForKey:@"title"];
     
-    XCTAssertTrue([queuedTitle isEqualToString:[trackOne objectForKey:@"title"]], @"Only trackone should be in queue");
+    XCTAssertTrue([queuedTitle isEqualToString:[trackOne objectForKey:@"title"]], @"trackone should be in queue pos 0");
 }
 
 - (void)tearDown

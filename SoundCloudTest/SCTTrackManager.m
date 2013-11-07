@@ -14,9 +14,6 @@
 #import <SDWebImage/SDWebImageManager.h>
 #import "NXOAuth2Account.h"
 
-#define FAVORITES_URL @"https://api.soundcloud.com/me/favorites.json"
-#define BACKUP_URL @"https://api.soundcloud.com/users/13932803/favorites.json"
-
 @interface SCTTrackManager()
 @property (nonatomic, strong) UIViewController* fromVC;
 @property (nonatomic, strong) NSMutableDictionary* musicCache; //this is a bad bad thing but ok for demoing
@@ -211,6 +208,7 @@ static SCTTrackManager* singleton;
             
             //if the current logged in user has no favorites list, load mine :)
             self.favorites = (NSArray*)jsonResponse;
+            self.fullTrackList = (NSArray*)jsonResponse;
             if([self.favorites count] > 0)
             {
                 [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_FAVORITES
@@ -238,12 +236,10 @@ static SCTTrackManager* singleton;
         if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
             
             self.favorites = (NSArray*)jsonResponse;
+            self.fullTrackList = (NSArray*)jsonResponse;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-            if([self.favorites count] > 0)
-            {
-                [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_FAVORITES
+            [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_FAVORITES
                                                                     object:self.favorites];
-            }
         }
     };
     
@@ -289,10 +285,6 @@ static SCTTrackManager* singleton;
         }
         
         //play immediately flag forces this to open in safari or sc app, no in-app queueing, pause in app player
-        if([self.controller playing])
-        {
-            [self.controller pause];
-        }
         return;
     }
     

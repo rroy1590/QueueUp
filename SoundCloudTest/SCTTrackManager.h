@@ -11,9 +11,13 @@
 #import <AVFoundation/AVAudioPlayer.h>
 #import <SCUI.h>
 
+#define FAVORITES_URL @"https://api.soundcloud.com/me/favorites.json"
+#define BACKUP_URL @"https://api.soundcloud.com/users/13932803/favorites.json"
+
 @interface SCTTrackManager : BeamAVMusicPlayerProvider <AVAudioPlayerDelegate>
 
 @property (nonatomic,strong) NSArray* favorites;
+@property (nonatomic,strong) NSArray* fullTrackList;
 @property (nonatomic, strong) NSDictionary* userData;
 @property (nonatomic, strong) NSMutableArray* playQueue;
 

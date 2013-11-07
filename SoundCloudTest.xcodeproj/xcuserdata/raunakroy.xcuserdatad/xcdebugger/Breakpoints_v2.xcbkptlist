@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoundCloudTestTests/SCTTrackManagerTests.m"
-            timestampString = "405550187.590823"
+            timestampString = "405551546.097507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-testLoadUserData"
             landmarkType = "5">
          </BreakpointContent>
@@ -365,6 +365,66 @@
             endingLineNumber = "46"
             landmarkName = "-initWithClientID:clientSecret:authorizeURL:tokenURL:delegate:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoundCloudTestTests/SCTTrackManagerTests.m"
+            timestampString = "405551588.732478"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-testLoadUserData"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[SCTTrackManagerTests testLoadUserData]_block_invoke"
+                  moduleName = "SoundCloudTestTests"
+                  urlString = "file:///Users/raunakroy/Documents/theprojects/git/SoundCloudTest/SoundCloudTestTests/SCTTrackManagerTests.m"
+                  timestampString = "405551612.344837"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "127">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[SCTTrackManagerTests testLoadUserData]_block_invoke"
+                  moduleName = "SoundCloudTestTests"
+                  urlString = "file:///Users/raunakroy/Documents/theprojects/git/SoundCloudTest/SoundCloudTestTests/SCTTrackManagerTests.m"
+                  timestampString = "405551612.345085"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "988">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[SCTTrackManagerTests testLoadUserData]_block_invoke"
+                  moduleName = "SoundCloudTestTests"
+                  urlString = "file:///Users/raunakroy/Documents/theprojects/git/SoundCloudTest/SoundCloudTestTests/SCTTrackManagerTests.m"
+                  timestampString = "405551612.345293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "3092">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

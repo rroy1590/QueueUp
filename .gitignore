@@ -1,0 +1,13 @@
+*.BACKUP.*.pbxproj
+*.BASE.*.pbxproj
+*.LOCAL.*.pbxproj
+*.REMOTE.*.pbxproj
+*.orig
+*.xcuserstate
+*.xcbkptlist
+xcuserdata
+.idea
+ShellDamage/Resources/_AutoReference/*
+_AutoMacros.h
+.DS_Store
+*.pyc

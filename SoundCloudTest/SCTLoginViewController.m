@@ -188,6 +188,9 @@
 {
     if ([[segue identifier] isEqualToString:@"QueueUpSegue"]) {
         [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] getFavorites]];
+    } else if([[segue identifier] isEqualToString:@"FavoritesSegue"])
+    {
+        [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] getFavorites]];
     }
 }
 

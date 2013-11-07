@@ -187,9 +187,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="tQt-TN-PWz"/>
-                    <connections>
-                        <outlet property="nav" destination="tQt-TN-PWz" id="vio-Xc-4rt"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>

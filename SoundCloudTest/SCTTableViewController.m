@@ -27,7 +27,6 @@
     [super viewDidLoad];
     
     [[self tableView] registerClass:[SCTTableViewCell class] forCellReuseIdentifier:CELL_ID];
-    self.tracks = [[SCTTrackManager sharedSingleton] getFavorites];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidStart) name:STARTED_PLAYING object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidStop) name:FINISHED_PLAYING object:nil];

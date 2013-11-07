@@ -10,10 +10,6 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface SCTTableViewController : UITableViewController<AVAudioPlayerDelegate>
-{
-    IBOutlet UINavigationItem* nav;
-}
-
 @property (nonatomic, strong) NSArray *tracks;
 
 @end

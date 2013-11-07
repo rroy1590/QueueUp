@@ -81,6 +81,11 @@
 {
     self.currentDataItem = [self.delegate dataForViewAtIndex:self.currentIndex];
     
+    if(!self.currentDataItem)
+    {
+        return;
+    }
+    
     SCTTrackDataObject* track = [[SCTTrackDataObject alloc] initWithData:self.currentDataItem];
     
     

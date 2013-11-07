@@ -12,14 +12,12 @@
 #import "BeamMusicPlayerViewController.h"
 #import "SCTTrackDataObject.h"
 #import <SDWebImage/SDWebImageManager.h>
+#import "NXOAuth2Account.h"
 
 #define FAVORITES_URL @"https://api.soundcloud.com/me/favorites.json"
 #define BACKUP_URL @"https://api.soundcloud.com/users/13932803/favorites.json"
 
 @interface SCTTrackManager()
-@property (nonatomic,strong) NSArray* favorites;
-@property (nonatomic, strong) NSDictionary* userData;
-@property (nonatomic, strong) NSMutableArray* playQueue;
 @property (nonatomic, strong) UIViewController* fromVC;
 @property (nonatomic, strong) NSMutableDictionary* musicCache; //this is a bad bad thing but ok for demoing
 @end
@@ -27,6 +25,9 @@
 static SCTTrackManager* singleton;
 
 @implementation SCTTrackManager
+
+//declaring our own custom setter so we should manually synthesize
+@synthesize favorites=_favorites;
 
 + (SCTTrackManager*) sharedSingleton
 {
@@ -95,12 +96,24 @@ static SCTTrackManager* singleton;
 - (void) logout
 {
     [SCSoundCloud removeAccess];
+    
+    [self.controller stop];
+    self.favorites = nil;
+    self.userData = nil;
+    self.musicCache = [NSMutableDictionary dictionary];
+    self.playQueue = [NSMutableArray array];
+    [[NSNotificationCenter defaultCenter] postNotificationName:FINISHED_PLAYING object:nil];
 }
 
 # pragma mark - Data Handlers
+- (NSArray*) getFavorites
+{
+    return _favorites;
+}
 
 - (void) setFavorites:(NSArray *)favorites
 {
+    //only keep the stuff we can stream
     NSMutableArray* newArr = [NSMutableArray array];
     for(NSDictionary* trackData in favorites)
     {
@@ -120,6 +133,31 @@ static SCTTrackManager* singleton;
     _favorites = sortedArray;
 }
 
+- (void) loadUserDataWithHandler:(SCRequestResponseHandler)aResponseHandler
+{
+    [SCRequest  performMethod:SCRequestMethodGET
+                   onResource:[NSURL URLWithString:@"https://api.soundcloud.com/me.json"]
+              usingParameters:nil
+                  withAccount:[SCSoundCloud account]
+       sendingProgressHandler:nil
+              responseHandler:aResponseHandler];
+}
+
+- (void) loadFavoritesWithHandler:(SCRequestResponseHandler)aResponseHandler
+{
+    [self loadFavoritesFrom:FAVORITES_URL withHandler:aResponseHandler];
+}
+
+- (void) loadFavoritesFrom:(NSString*)url withHandler:(SCRequestResponseHandler)aResponseHandler
+{
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:nil
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:nil
+             responseHandler:aResponseHandler];
+}
+
 - (void) loadData
 {
     if (![self isAvailable])
@@ -131,32 +169,39 @@ static SCTTrackManager* singleton;
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    [SCRequest  performMethod:SCRequestMethodGET
-                   onResource:[NSURL URLWithString:@"https://api.soundcloud.com/me.json"]
-              usingParameters:nil
-                  withAccount:[SCSoundCloud account]
-       sendingProgressHandler:nil
-              responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-                  // Handle the response
-                  if (error) {
-                      NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
-                  } else {
-                      // Check the statuscode and parse the data
-                      NSError *jsonError = nil;
-                      NSJSONSerialization *jsonResponse = [NSJSONSerialization
-                                                           JSONObjectWithData:data
-                                                           options:0
-                                                           error:&jsonError];
-                      if (!jsonError && [jsonResponse isKindOfClass:[NSDictionary class]]) {
-                          self.userData = (NSDictionary*)jsonResponse;
-                          NSLog(@"%@",jsonResponse);
-                          [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_USER object:self.userData];
-                      }
-                  }
-              }];
+    SCRequestResponseHandler userDataHandler;
+    userDataHandler = ^(NSURLResponse *response, NSData *data, NSError *error){
+        // Handle the response
+        if (error) {
+            NSLog(@"Error: %@", [error localizedDescription]);
+        } else {
+            // Check the statuscode and parse the data
+            NSError *jsonError = nil;
+            NSJSONSerialization *jsonResponse = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:0
+                                                 error:&jsonError];
+            if (!jsonError && [jsonResponse isKindOfClass:[NSDictionary class]]) {
+                self.userData = (NSDictionary*)jsonResponse;
+                NSLog(@"%@",jsonResponse);
+                [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_USER
+                                                                    object:self.userData];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:@"Error logging in!"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+    };
     
-    SCRequestResponseHandler handler;
-    handler = ^(NSURLResponse *response, NSData *data, NSError *error) {
+    [self loadUserDataWithHandler:userDataHandler];
+    
+    
+    SCRequestResponseHandler favoritesHandler;
+    favoritesHandler = ^(NSURLResponse *response, NSData *data, NSError *error) {
         NSError *jsonError = nil;
         NSJSONSerialization *jsonResponse = [NSJSONSerialization
                                              JSONObjectWithData:data
@@ -164,25 +209,21 @@ static SCTTrackManager* singleton;
                                              error:&jsonError];
         if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
             
+            //if the current logged in user has no favorites list, load mine :)
             self.favorites = (NSArray*)jsonResponse;
             if([self.favorites count] > 0)
             {
-                [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_FAVORITES object:self.favorites];
+                [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_FAVORITES
+                                                                    object:self.favorites];
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-            }
-            else{
+                
+            } else{
                 [self loadBackupFavorites];
             }
         }
     };
     
-    NSString *resourceURL = FAVORITES_URL;
-    [SCRequest performMethod:SCRequestMethodGET
-                  onResource:[NSURL URLWithString:resourceURL]
-             usingParameters:nil
-                 withAccount:[SCSoundCloud account]
-      sendingProgressHandler:nil
-             responseHandler:handler];
+    [self loadFavoritesWithHandler:favoritesHandler];
 }
 
 - (void) loadBackupFavorites
@@ -200,28 +241,13 @@ static SCTTrackManager* singleton;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             if([self.favorites count] > 0)
             {
-                [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_FAVORITES object:self.favorites];
+                [[NSNotificationCenter defaultCenter] postNotificationName:LOADED_FAVORITES
+                                                                    object:self.favorites];
             }
         }
     };
     
-    NSString *resourceURL = BACKUP_URL;
-    [SCRequest performMethod:SCRequestMethodGET
-                  onResource:[NSURL URLWithString:resourceURL]
-             usingParameters:nil
-                 withAccount:[SCSoundCloud account]
-      sendingProgressHandler:nil
-             responseHandler:handler];
-}
-
-- (NSArray*) getFavorites
-{
-    return self.favorites;
-}
-
-- (NSDictionary*) getUserData
-{
-    return self.userData;
+    [self loadFavoritesFrom:BACKUP_URL withHandler:handler];
 }
 
 # pragma mark - Audio Handlers
@@ -229,15 +255,15 @@ static SCTTrackManager* singleton;
 - (void) showPlayerFromView: (UIViewController*) view
 {
     self.fromVC = view;
-    SCTTrackManager* weakSelf = self;
+    __weak SCTTrackManager* weakSelf = self;
     self.controller.backBlock = ^{
         [weakSelf.controller dismissViewControllerAnimated:YES completion:nil];
     };
     
     [self.fromVC presentViewController:self.controller
-                             animated:YES
+                              animated:YES
                             completion:^(void){
-                                [self.controller reloadData];
+                                [weakSelf.controller reloadData];
                             }];
 }
 
@@ -248,15 +274,39 @@ static SCTTrackManager* singleton;
 
 - ( void) playTrack:(NSDictionary*) trackData immediately:(BOOL)playImmediately
 {
+    SCTTrackDataObject* tackDataObj = [[SCTTrackDataObject alloc] initWithData:trackData];
+    if(playImmediately)
+    {
+        //try to launch SC app immediately if possible
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"soundcloud:sounds:testid"]])
+        {
+            NSString* fullURLStr = [tackDataObj getSCAppUrl];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fullURLStr]];
+        } else {
+            //else try to pop open safari to that track instead
+            NSString* fullURLStr = [tackDataObj getSCSiteUrl];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fullURLStr]];
+        }
+        
+        //play immediately flag forces this to open in safari or sc app, no in-app queueing, pause in app player
+        if([self.controller playing])
+        {
+            [self.controller pause];
+        }
+        return;
+    }
     
+    //already playing or queued = no-op (maybe should reorder queue?)
     if(!playImmediately && (self.trackDescription == trackData || [self.playQueue containsObject:trackData]))
     {
         return;
     }
     
+    //add to queue
     [self.playQueue addObject:trackData];
     
-    if(playImmediately || (!self.audioPlayer.playing && self.trackDescription == nil))
+    //play if nothing's already playing
+    if(!self.audioPlayer.playing && self.trackDescription == nil)
     {
         [self loadAndPlayTrack:trackData];
         self.controller.currentTrack = [self.playQueue indexOfObject:trackData];
@@ -298,6 +348,7 @@ static SCTTrackManager* singleton;
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     };
     
+    //play cached song data immediately
     if(existing != nil)
     {
         playBlock(existing);

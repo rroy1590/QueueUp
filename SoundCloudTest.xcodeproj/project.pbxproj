@@ -19,7 +19,6 @@
 		FF099F19181F131F003C480C /* SCTSwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF099F18181F131F003C480C /* SCTSwipeView.m */; };
 		FF099F20181F42E7003C480C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF099F1F181F42E7003C480C /* ImageIO.framework */; };
 		FF099F22181F4430003C480C /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = FF099F21181F4430003C480C /* placeholder.png */; };
-		FF099F35181F4660003C480C /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF099F2C181F4645003C480C /* libSDWebImage.a */; };
 		FF099F381821A06F003C480C /* SCTTrackCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF099F371821A06F003C480C /* SCTTrackCardView.m */; };
 		FF099F3B1821A3D1003C480C /* SCTTrackDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FF099F3A1821A3D1003C480C /* SCTTrackDataObject.m */; };
 		FF099F3F1821BC39003C480C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF099F3E1821BC39003C480C /* MBProgressHUD.m */; };
@@ -44,6 +43,11 @@
 		FF099FCA18238564003C480C /* yes_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = FF099FC818238564003C480C /* yes_btn.png */; };
 		FF099FCD182386F1003C480C /* no_btn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FF099FCB182386F1003C480C /* no_btn_down.png */; };
 		FF099FCE182386F1003C480C /* yes_btn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FF099FCC182386F1003C480C /* yes_btn_down.png */; };
+		FF099FF918239F9B003C480C /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF099FF018239F5F003C480C /* libSDWebImage.a */; };
+		FF09A011182439A0003C480C /* SCTTrackDataObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF09A010182439A0003C480C /* SCTTrackDataObjectTests.m */; };
+		FF09A01E18246B3E003C480C /* SCTTrackManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF09A01918243A3F003C480C /* SCTTrackManagerTests.m */; };
+		FF09A0201824BF5E003C480C /* list_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FF09A01F1824BF5E003C480C /* list_bg.png */; };
+		FF09A0231824C661003C480C /* SCTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF09A0221824C661003C480C /* SCTTableViewCell.m */; };
 		FFEE8D29181E41E8000C0D80 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE8D28181E41E8000C0D80 /* Foundation.framework */; };
 		FFEE8D2B181E41E8000C0D80 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE8D2A181E41E8000C0D80 /* CoreGraphics.framework */; };
 		FFEE8D2D181E41E8000C0D80 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE8D2C181E41E8000C0D80 /* UIKit.framework */; };
@@ -51,7 +55,7 @@
 		FFEE8D35181E41E8000C0D80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEE8D34181E41E8000C0D80 /* main.m */; };
 		FFEE8D39181E41E8000C0D80 /* SCTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEE8D38181E41E8000C0D80 /* SCTAppDelegate.m */; };
 		FFEE8D3C181E41E8000C0D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFEE8D3A181E41E8000C0D80 /* Main.storyboard */; };
-		FFEE8D3F181E41E8000C0D80 /* SCTMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEE8D3E181E41E8000C0D80 /* SCTMasterViewController.m */; };
+		FFEE8D3F181E41E8000C0D80 /* SCTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEE8D3E181E41E8000C0D80 /* SCTTableViewController.m */; };
 		FFEE8D44181E41E8000C0D80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFEE8D43181E41E8000C0D80 /* Images.xcassets */; };
 		FFEE8D4B181E41E8000C0D80 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE8D4A181E41E8000C0D80 /* XCTest.framework */; };
 		FFEE8D4C181E41E8000C0D80 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE8D28181E41E8000C0D80 /* Foundation.framework */; };
@@ -102,41 +106,6 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = SoundCloudAPI;
 		};
-		FF099F2B181F4645003C480C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF099F24181F4645003C480C /* SDWebImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 53761325155AD0D5005750A4;
-			remoteInfo = SDWebImage;
-		};
-		FF099F2D181F4645003C480C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF099F24181F4645003C480C /* SDWebImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 537D95C117ECC1FE0097C263;
-			remoteInfo = "SDWebImage+WebP";
-		};
-		FF099F2F181F4645003C480C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF099F24181F4645003C480C /* SDWebImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 531041E0157EAFA400BBABC3;
-			remoteInfo = "SDWebImage+MKAnnotation";
-		};
-		FF099F31181F4659003C480C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF099F24181F4645003C480C /* SDWebImage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 53761307155AD0D5005750A4;
-			remoteInfo = SDWebImage;
-		};
-		FF099F33181F4659003C480C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF099F24181F4645003C480C /* SDWebImage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 539F912B16316D2D00160719;
-			remoteInfo = SDWebImageFramework;
-		};
 		FF099FAE1821D590003C480C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF099FA71821D58F003C480C /* Pods.xcodeproj */;
@@ -165,13 +134,6 @@
 			remoteGlobalIDString = 62A4484E695B4752A394CDC6;
 			remoteInfo = "Pods-BeamMusicPlayerExampleTests";
 		};
-		FF099FB61821D5B1003C480C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF099FA71821D58F003C480C /* Pods.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8A0A029AA37B4F6C81BF0F8E;
-			remoteInfo = "Pods-BeamMusicPlayerExampleTests-OCMock";
-		};
 		FF099FB81821D5B1003C480C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF099FA71821D58F003C480C /* Pods.xcodeproj */;
@@ -186,12 +148,33 @@
 			remoteGlobalIDString = 57A654E741BD44D58A1F51E4;
 			remoteInfo = Pods;
 		};
-		FF099FBC1821D5B1003C480C /* PBXContainerItemProxy */ = {
+		FF099FEF18239F5F003C480C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FF099FA71821D58F003C480C /* Pods.xcodeproj */;
+			containerPortal = FF099FE818239F5F003C480C /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53761325155AD0D5005750A4;
+			remoteInfo = SDWebImage;
+		};
+		FF099FF118239F5F003C480C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF099FE818239F5F003C480C /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 537D95C117ECC1FE0097C263;
+			remoteInfo = "SDWebImage+WebP";
+		};
+		FF099FF318239F5F003C480C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF099FE818239F5F003C480C /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 531041E0157EAFA400BBABC3;
+			remoteInfo = "SDWebImage+MKAnnotation";
+		};
+		FF099FF518239F82003C480C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF099FE818239F5F003C480C /* SDWebImage.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 0B8B6842A5864DA99DB2E852;
-			remoteInfo = "Pods-BeamMusicPlayerExampleTests";
+			remoteGlobalIDString = 53761307155AD0D5005750A4;
+			remoteInfo = SDWebImage;
 		};
 		FFEE8D4E181E41E8000C0D80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -276,11 +259,9 @@
 		FF099F17181F131F003C480C /* SCTSwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTSwipeView.h; sourceTree = "<group>"; };
 		FF099F18181F131F003C480C /* SCTSwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTSwipeView.m; sourceTree = "<group>"; };
 		FF099F1A181F3AFB003C480C /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
-		FF099F1B181F4279003C480C /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = ../../../../Downloads/SDWebImage.framework; sourceTree = "<group>"; };
 		FF099F1D181F4291003C480C /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		FF099F1F181F42E7003C480C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		FF099F21181F4430003C480C /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
-		FF099F24181F4645003C480C /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = ../SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		FF099F361821A06F003C480C /* SCTTrackCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTTrackCardView.h; sourceTree = "<group>"; };
 		FF099F371821A06F003C480C /* SCTTrackCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTTrackCardView.m; sourceTree = "<group>"; };
 		FF099F391821A3D1003C480C /* SCTTrackDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTTrackDataObject.h; sourceTree = "<group>"; };
@@ -320,6 +301,12 @@
 		FF099FC818238564003C480C /* yes_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yes_btn.png; path = assets/yes_btn.png; sourceTree = "<group>"; };
 		FF099FCB182386F1003C480C /* no_btn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_btn_down.png; path = assets/no_btn_down.png; sourceTree = "<group>"; };
 		FF099FCC182386F1003C480C /* yes_btn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yes_btn_down.png; path = assets/yes_btn_down.png; sourceTree = "<group>"; };
+		FF099FE818239F5F003C480C /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
+		FF09A010182439A0003C480C /* SCTTrackDataObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTTrackDataObjectTests.m; sourceTree = "<group>"; };
+		FF09A01918243A3F003C480C /* SCTTrackManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTTrackManagerTests.m; sourceTree = "<group>"; };
+		FF09A01F1824BF5E003C480C /* list_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list_bg.png; path = assets/list_bg.png; sourceTree = "<group>"; };
+		FF09A0211824C661003C480C /* SCTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTTableViewCell.h; sourceTree = "<group>"; };
+		FF09A0221824C661003C480C /* SCTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTTableViewCell.m; sourceTree = "<group>"; };
 		FFEE8D25181E41E8000C0D80 /* SoundCloudTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundCloudTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEE8D28181E41E8000C0D80 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FFEE8D2A181E41E8000C0D80 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -331,8 +318,8 @@
 		FFEE8D37181E41E8000C0D80 /* SCTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCTAppDelegate.h; sourceTree = "<group>"; };
 		FFEE8D38181E41E8000C0D80 /* SCTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCTAppDelegate.m; sourceTree = "<group>"; };
 		FFEE8D3B181E41E8000C0D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FFEE8D3D181E41E8000C0D80 /* SCTMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCTMasterViewController.h; sourceTree = "<group>"; };
-		FFEE8D3E181E41E8000C0D80 /* SCTMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCTMasterViewController.m; sourceTree = "<group>"; };
+		FFEE8D3D181E41E8000C0D80 /* SCTTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCTTableViewController.h; sourceTree = "<group>"; };
+		FFEE8D3E181E41E8000C0D80 /* SCTTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCTTableViewController.m; sourceTree = "<group>"; };
 		FFEE8D43181E41E8000C0D80 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FFEE8D49181E41E8000C0D80 /* SoundCloudTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundCloudTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEE8D4A181E41E8000C0D80 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -357,9 +344,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF099FF918239F9B003C480C /* libSDWebImage.a in Frameworks */,
 				FF099F7E1821D157003C480C /* MessageUI.framework in Frameworks */,
 				FF099F7C1821D152003C480C /* MediaPlayer.framework in Frameworks */,
-				FF099F35181F4660003C480C /* libSDWebImage.a in Frameworks */,
 				FF099F20181F42E7003C480C /* ImageIO.framework in Frameworks */,
 				FFEE8D9A181E4422000C0D80 /* Security.framework in Frameworks */,
 				FFEE8D96181E441D000C0D80 /* CoreLocation.framework in Frameworks */,
@@ -395,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				FF099F21181F4430003C480C /* placeholder.png */,
+				FF09A01F1824BF5E003C480C /* list_bg.png */,
 				FF099FC718238564003C480C /* no_btn.png */,
 				FF099FC818238564003C480C /* yes_btn.png */,
 				FF099FC118233550003C480C /* swipe_bg.png */,
@@ -404,16 +392,6 @@
 				FF099FC518234490003C480C /* loginbg.png */,
 			);
 			name = Assets;
-			sourceTree = "<group>";
-		};
-		FF099F25181F4645003C480C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FF099F2C181F4645003C480C /* libSDWebImage.a */,
-				FF099F2E181F4645003C480C /* libSDWebImage+WebP.a */,
-				FF099F30181F4645003C480C /* libSDWebImage+MKAnnotation.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		FF099F3C1821BC2E003C480C /* External */ = {
@@ -468,11 +446,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FF099FE918239F5F003C480C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF099FF018239F5F003C480C /* libSDWebImage.a */,
+				FF099FF218239F5F003C480C /* libSDWebImage+WebP.a */,
+				FF099FF418239F5F003C480C /* libSDWebImage+MKAnnotation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		FFEE8D1C181E41E8000C0D80 = {
 			isa = PBXGroup;
 			children = (
+				FF099FE818239F5F003C480C /* SDWebImage.xcodeproj */,
 				FF099FA71821D58F003C480C /* Pods.xcodeproj */,
-				FF099F24181F4645003C480C /* SDWebImage.xcodeproj */,
 				FF099EE9181EDD4C003C480C /* SoundCloud.bundle */,
 				FFEE8D84181E42E2000C0D80 /* OHAttributedLabel.xcodeproj */,
 				FFEE8D7B181E42D9000C0D80 /* OAuth2Client.xcodeproj */,
@@ -502,7 +490,6 @@
 				FF099F7B1821D152003C480C /* MediaPlayer.framework */,
 				FF099F1F181F42E7003C480C /* ImageIO.framework */,
 				FF099F1D181F4291003C480C /* SDWebImage.framework */,
-				FF099F1B181F4279003C480C /* SDWebImage.framework */,
 				FFEE8D99181E4422000C0D80 /* Security.framework */,
 				FFEE8D93181E441D000C0D80 /* CoreLocation.framework */,
 				FFEE8D94181E441D000C0D80 /* CoreText.framework */,
@@ -537,8 +524,10 @@
 				FF099F3A1821A3D1003C480C /* SCTTrackDataObject.m */,
 				FF099F0B181EE0FC003C480C /* SCTLoginViewController.h */,
 				FF099F0C181EE0FC003C480C /* SCTLoginViewController.m */,
-				FFEE8D3D181E41E8000C0D80 /* SCTMasterViewController.h */,
-				FFEE8D3E181E41E8000C0D80 /* SCTMasterViewController.m */,
+				FFEE8D3D181E41E8000C0D80 /* SCTTableViewController.h */,
+				FFEE8D3E181E41E8000C0D80 /* SCTTableViewController.m */,
+				FF09A0211824C661003C480C /* SCTTableViewCell.h */,
+				FF09A0221824C661003C480C /* SCTTableViewCell.m */,
 				FF099F23181F4434003C480C /* Assets */,
 				FFEE8D43181E41E8000C0D80 /* Images.xcassets */,
 				FFEE8D2F181E41E8000C0D80 /* Supporting Files */,
@@ -561,6 +550,8 @@
 			isa = PBXGroup;
 			children = (
 				FFEE8D56181E41E8000C0D80 /* SoundCloudTestTests.m */,
+				FF09A010182439A0003C480C /* SCTTrackDataObjectTests.m */,
+				FF09A01918243A3F003C480C /* SCTTrackManagerTests.m */,
 				FFEE8D51181E41E8000C0D80 /* Supporting Files */,
 			);
 			path = SoundCloudTestTests;
@@ -633,12 +624,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				FF099FB71821D5B1003C480C /* PBXTargetDependency */,
+				FF099FF618239F82003C480C /* PBXTargetDependency */,
 				FF099FB91821D5B1003C480C /* PBXTargetDependency */,
 				FF099FBB1821D5B1003C480C /* PBXTargetDependency */,
-				FF099FBD1821D5B1003C480C /* PBXTargetDependency */,
-				FF099F32181F4659003C480C /* PBXTargetDependency */,
-				FF099F34181F4659003C480C /* PBXTargetDependency */,
 				FF099EF1181EDDCA003C480C /* PBXTargetDependency */,
 				FF099EF3181EDDCA003C480C /* PBXTargetDependency */,
 				FF099EF5181EDDCA003C480C /* PBXTargetDependency */,
@@ -715,8 +703,8 @@
 					ProjectRef = FF099FA71821D58F003C480C /* Pods.xcodeproj */;
 				},
 				{
-					ProductGroup = FF099F25181F4645003C480C /* Products */;
-					ProjectRef = FF099F24181F4645003C480C /* SDWebImage.xcodeproj */;
+					ProductGroup = FF099FE918239F5F003C480C /* Products */;
+					ProjectRef = FF099FE818239F5F003C480C /* SDWebImage.xcodeproj */;
 				},
 				{
 					ProductGroup = FFEE8D61181E42B6000C0D80 /* Products */;
@@ -736,27 +724,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FF099F2C181F4645003C480C /* libSDWebImage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSDWebImage.a;
-			remoteRef = FF099F2B181F4645003C480C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FF099F2E181F4645003C480C /* libSDWebImage+WebP.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libSDWebImage+WebP.a";
-			remoteRef = FF099F2D181F4645003C480C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FF099F30181F4645003C480C /* libSDWebImage+MKAnnotation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libSDWebImage+MKAnnotation.a";
-			remoteRef = FF099F2F181F4645003C480C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		FF099FAF1821D590003C480C /* libPods-BeamMusicPlayerExampleTests-OCMock.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -783,6 +750,27 @@
 			fileType = archive.ar;
 			path = "libPods-BeamMusicPlayerExampleTests.a";
 			remoteRef = FF099FB41821D590003C480C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FF099FF018239F5F003C480C /* libSDWebImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImage.a;
+			remoteRef = FF099FEF18239F5F003C480C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FF099FF218239F5F003C480C /* libSDWebImage+WebP.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImage+WebP.a";
+			remoteRef = FF099FF118239F5F003C480C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FF099FF418239F5F003C480C /* libSDWebImage+MKAnnotation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImage+MKAnnotation.a";
+			remoteRef = FF099FF318239F5F003C480C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		FFEE8D66181E42B6000C0D80 /* SoundCloudAPI.framework */ = {
@@ -857,6 +845,7 @@
 			files = (
 				FFEE8D44181E41E8000C0D80 /* Images.xcassets in Resources */,
 				FF099EEA181EDD4C003C480C /* SoundCloud.bundle in Resources */,
+				FF09A0201824BF5E003C480C /* list_bg.png in Resources */,
 				FF099FC618234490003C480C /* loginbg.png in Resources */,
 				FF099FCD182386F1003C480C /* no_btn_down.png in Resources */,
 				FF099FCA18238564003C480C /* yes_btn.png in Resources */,
@@ -890,13 +879,14 @@
 			files = (
 				FF099F701821D0CB003C480C /* BeamAVMusicPlayerProvider.m in Sources */,
 				FFEE8D35181E41E8000C0D80 /* main.m in Sources */,
+				FF09A0231824C661003C480C /* SCTTableViewCell.m in Sources */,
 				FF099F711821D0CB003C480C /* BeamMPMusicPlayerProvider.m in Sources */,
 				FF099F10181F04AC003C480C /* SCTTrackManager.m in Sources */,
 				FFEE8D39181E41E8000C0D80 /* SCTAppDelegate.m in Sources */,
 				FF099F791821D0CB003C480C /* BeamRadialGradientView.m in Sources */,
 				FF099F6F1821D0CB003C480C /* AutoScrollLabel.m in Sources */,
 				FF099F3F1821BC39003C480C /* MBProgressHUD.m in Sources */,
-				FFEE8D3F181E41E8000C0D80 /* SCTMasterViewController.m in Sources */,
+				FFEE8D3F181E41E8000C0D80 /* SCTTableViewController.m in Sources */,
 				FF099F781821D0CB003C480C /* BeamPlaylistViewController.m in Sources */,
 				FF099F13181F0A3E003C480C /* SCTQueueUpViewController.m in Sources */,
 				FF099F381821A06F003C480C /* SCTTrackCardView.m in Sources */,
@@ -915,6 +905,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFEE8D57181E41E8000C0D80 /* SoundCloudTestTests.m in Sources */,
+				FF09A01E18246B3E003C480C /* SCTTrackManagerTests.m in Sources */,
+				FF09A011182439A0003C480C /* SCTTrackDataObjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,21 +938,6 @@
 			name = SoundCloudAPI;
 			targetProxy = FF099EF8181EDDCA003C480C /* PBXContainerItemProxy */;
 		};
-		FF099F32181F4659003C480C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SDWebImage;
-			targetProxy = FF099F31181F4659003C480C /* PBXContainerItemProxy */;
-		};
-		FF099F34181F4659003C480C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SDWebImageFramework;
-			targetProxy = FF099F33181F4659003C480C /* PBXContainerItemProxy */;
-		};
-		FF099FB71821D5B1003C480C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-BeamMusicPlayerExampleTests-OCMock";
-			targetProxy = FF099FB61821D5B1003C480C /* PBXContainerItemProxy */;
-		};
 		FF099FB91821D5B1003C480C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-OBSlider";
@@ -971,10 +948,10 @@
 			name = Pods;
 			targetProxy = FF099FBA1821D5B1003C480C /* PBXContainerItemProxy */;
 		};
-		FF099FBD1821D5B1003C480C /* PBXTargetDependency */ = {
+		FF099FF618239F82003C480C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Pods-BeamMusicPlayerExampleTests";
-			targetProxy = FF099FBC1821D5B1003C480C /* PBXContainerItemProxy */;
+			name = SDWebImage;
+			targetProxy = FF099FF518239F82003C480C /* PBXContainerItemProxy */;
 		};
 		FFEE8D4F181E41E8000C0D80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1015,7 +992,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1052,6 +1029,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1059,7 +1037,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1084,14 +1062,17 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"HEADER_SEARCH_PATHS[arch=*]" = $PROJECT_DIR;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
 		FFEE8D5B181E41E8000C0D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1108,12 +1089,14 @@
 					"$(inherited)",
 					/Users/raunakroy/Documents/theprojects/git/SoundCloudTest/SoundCloudTest/Source/Pods,
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-ObjC,",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1121,6 +1104,7 @@
 		FFEE8D5C181E41E8000C0D80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1137,8 +1121,10 @@
 					"$(inherited)",
 					/Users/raunakroy/Documents/theprojects/git/SoundCloudTest/SoundCloudTest/Source/Pods,
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1160,8 +1146,10 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "SoundCloudTestTests/SoundCloudTestTests-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1179,8 +1167,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundCloudTest/SoundCloudTest-Prefix.pch";
 				INFOPLIST_FILE = "SoundCloudTestTests/SoundCloudTestTests-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

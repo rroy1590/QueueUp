@@ -93,7 +93,7 @@
         return [self.trackList objectAtIndex:index];
     }
     
-    return [NSDictionary dictionary];
+    return nil;
 }
 
 -(void) setCurrentTrack:(NSDictionary *)trackData

@@ -10,7 +10,10 @@
 #import "SCTSwipeView.h"
 
 @interface SCTQueueUpViewController : UIViewController <SCTSwipeViewDelegate>
+
 - (void) setTracks:(NSArray *)trackList;
+
 - (IBAction) pressedYes:(id)sender;
 - (IBAction) pressedNo:(id)sender;
+
 @end

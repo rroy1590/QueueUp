@@ -23,6 +23,16 @@
 //    [SCSoundCloud removeAccess];
     return YES;
 }
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    BOOL handled = [SCSoundCloud handleRedirectURL:url];
+    if (!handled) {
+        NSLog(@"The URL (%@) could not be handled by the SoundCloud API. Maybe you want to do something with it.", url);
+        return NO;
+    }
+    return YES;
+}
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

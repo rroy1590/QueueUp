@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface SCTMasterViewController : UITableViewController<AVAudioPlayerDelegate>
+@interface SCTTableViewController : UITableViewController<AVAudioPlayerDelegate>
 {
     IBOutlet UINavigationItem* nav;
 }

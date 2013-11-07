@@ -14,5 +14,6 @@
 
 -(NSString*) getArtworkUrl;
 -(NSString*) getTitle;
-
+-(NSString*) getSCAppUrl;
+-(NSString*) getSCSiteUrl;
 @end

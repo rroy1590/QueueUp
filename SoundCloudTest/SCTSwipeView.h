@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @protocol SCTSwipeViewDelegate
+
 -(NSUInteger)numberOfTracks;
 -(NSDictionary*)dataForViewAtIndex:(NSUInteger)index;
+
 -(void)didMakeSelectionWith:(NSDictionary*)selectionData;
 -(void)setCurrentTrack:(NSDictionary*)trackData;
+
 @end
 
 @interface SCTSwipeView : UIView

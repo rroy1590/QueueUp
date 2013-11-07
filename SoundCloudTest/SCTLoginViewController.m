@@ -8,13 +8,16 @@
 
 #import "SCTLoginViewController.h"
 #import "SCTQueueUpViewController.h"
-#import "SCTMasterViewController.h"
+#import "SCTTableViewController.h"
 #import "SCTTrackManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MBProgressHUD.h"
+#import <NXOAuth2Constants.h>
+#import <NXOAuth2Account.h>
 
 @interface SCTLoginViewController ()
 @property UIImageView* avatar;
+-(void)requestAccessFailed:(NSNotification *)aNotification;
 @end
 
 @implementation SCTLoginViewController
@@ -32,6 +35,19 @@
 {
     [super viewDidLoad];
     
+    logoutButton.alpha = 0;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(requestAccessFailed:)
+                                                 name:SCSoundCloudDidFailToRequestAccessNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(requestAccessFailed:)
+                                                 name:NXOAuth2AccountDidLoseAccessTokenNotification
+                                               object:nil];
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginCancelCallback) name:LOGIN_CANCEL object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginFailCallback) name:LOGIN_FAIL object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessCallback) name:LOGIN_SUCCESS object:nil];
@@ -48,7 +64,10 @@
     if ( [[SCTTrackManager sharedSingleton] isAvailable] )
     {
         loginButton.alpha = 0;
+        logoutButton.alpha = 1;
         [self loginSuccessCallback];
+    } else {
+        [self.navigationItem setTitle:@"Please Log In"];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidStart) name:STARTED_PLAYING object:nil];
@@ -67,6 +86,13 @@
 }
 
 # pragma mark - Callbacks
+- (void)requestAccessFailed:(NSNotification *)aNotification
+{
+    NSError *error = [[aNotification userInfo] objectForKey:NXOAuth2AccountStoreErrorKey];
+    NSLog(@"Requesting access to SoundCloud did fail with error: %@", [error localizedDescription]);
+    
+    [self loginFailCallback];
+}
 
 - (void) loadedUserData: (NSNotification*) userData
 {
@@ -98,7 +124,7 @@
     [[SCTTrackManager sharedSingleton] loadData];
     
     loginButton.alpha = 0;
-    [loginButton setEnabled:NO];
+    logoutButton.alpha = 1;
 }
 
 - (void) loginFailCallback
@@ -117,6 +143,21 @@
 - (IBAction) login:(id) sender
 {
     [[SCTTrackManager sharedSingleton] loginFrom:self];
+}
+
+- (IBAction) logout:(id) sender
+{
+    [[SCTTrackManager sharedSingleton] logout];
+    [self.navigationItem setTitle:@"Please Log In"];
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView animateWithDuration:1 animations:nil];
+    self.avatar.image = nil;
+    logoutButton.alpha = 0;
+    loginButton.alpha = 1;
+    getFeedButton.alpha = 0;
+    queueUpButton.alpha = 0;
+    [UIView commitAnimations];
 }
 
 # pragma mark - Audio Player

@@ -9,18 +9,32 @@
 #import <Foundation/Foundation.h>
 #import "BeamAVMusicPlayerProvider.h"
 #import <AVFoundation/AVAudioPlayer.h>
+#import <SCUI.h>
 
 @interface SCTTrackManager : BeamAVMusicPlayerProvider <AVAudioPlayerDelegate>
 
+@property (nonatomic,strong) NSArray* favorites;
+@property (nonatomic, strong) NSDictionary* userData;
+@property (nonatomic, strong) NSMutableArray* playQueue;
+
 + (SCTTrackManager*) sharedSingleton;
--(BOOL) isAvailable;
--(void) loadData;
--(NSArray*) getFavorites;
-- (void) logout;
-- (void) loginFrom: (UIViewController*) fromVC;
-- (NSDictionary*) getUserData;
-- ( void) playTrack:(NSDictionary*) trackData;
-- ( void) playTrack:(NSDictionary*) trackData immediately:(BOOL)playImmediately;
-- (void) showPlayerFromView: (UIViewController*) view;
+
+- (BOOL) isAvailable;
 - (BOOL) canPlayMusic;
+
+- (void) logout;
+- (void) loginFrom:(UIViewController*) fromVC;
+
+-(NSArray*) getFavorites;
+- (void) setFavorites:(NSArray *)favorites;
+
+- (void) playTrack:(NSDictionary*) trackData;
+- (void) playTrack:(NSDictionary*) trackData immediately:(BOOL)playImmediately;
+- (void) showPlayerFromView:(UIViewController*) view;
+
+- (void) loadData;
+- (void) loadUserDataWithHandler:(SCRequestResponseHandler) aResponseHandler;
+- (void) loadFavoritesWithHandler:(SCRequestResponseHandler) aResponseHandler;
+- (void) loadFavoritesFrom:(NSString*)url withHandler:(SCRequestResponseHandler)aResponseHandler;
+
 @end

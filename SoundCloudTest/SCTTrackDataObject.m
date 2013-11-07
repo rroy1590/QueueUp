@@ -37,4 +37,17 @@
 {
     return [self.trackData objectForKey:@"title"];
 }
+
+-(NSString*) getSCAppUrl
+{
+    NSString* fullURLStr = [NSString stringWithFormat:@"soundcloud:sounds:%@",[self.trackData objectForKey:@"id"]];
+    return fullURLStr;
+}
+
+-(NSString*) getSCSiteUrl
+{
+    NSString* fullURLStr = [self.trackData objectForKey:@"permalink_url"];
+    return fullURLStr;
+}
+
 @end

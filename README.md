@@ -13,7 +13,7 @@ Basically this app has a UI that allows users to queue a number of available str
 ![Screenshot](http://i.imgur.com/j8kKpP2.png?1)
 ![Screenshot](http://i.imgur.com/3KBls1r.png?1)
 ![Screenshot](http://i.imgur.com/bfzZ16p.png?1)
-![Screenshot](http://i.imgur.com/yTyG4s9.png?1)
+![Screenshot](http://i.imgur.com/yTyG4s9.png?2)
 ## Setup
 
 This project is configured to run on ios7/64 bit. It should run out of the box. 

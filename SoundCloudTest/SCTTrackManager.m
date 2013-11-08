@@ -135,14 +135,21 @@ static SCTTrackManager* singleton;
         }
     }
     
-    NSArray *sortedArray;
-    sortedArray = [newArr sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+    NSArray *sortedStreamableArray = [newArr sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
         CGFloat firstDuration = [[(NSDictionary*)a objectForKey:@"duration"] floatValue];
         CGFloat secondDuration = [[(NSDictionary*)b objectForKey:@"duration"] floatValue];
         return [[NSNumber numberWithFloat:firstDuration] compare:[NSNumber numberWithFloat:secondDuration]];
     }];
     
-    _favorites = sortedArray;
+    _streamableFavorites = sortedStreamableArray;
+    
+    NSArray *sortedFullArray = [favorites sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        CGFloat firstDuration = [[(NSDictionary*)a objectForKey:@"duration"] floatValue];
+        CGFloat secondDuration = [[(NSDictionary*)b objectForKey:@"duration"] floatValue];
+        return [[NSNumber numberWithFloat:firstDuration] compare:[NSNumber numberWithFloat:secondDuration]];
+    }];
+    
+    _favorites = sortedFullArray;
 }
 
 - (void) loadUserDataWithHandler:(SCRequestResponseHandler)aResponseHandler

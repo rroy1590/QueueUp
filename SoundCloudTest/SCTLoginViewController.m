@@ -195,7 +195,7 @@
         {
             [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] fullTrackList]];
         } else {
-            [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] getFavorites]];
+            [[segue destinationViewController] setTracks:[[SCTTrackManager sharedSingleton] streamableFavorites]];
         }
     } else if([[segue identifier] isEqualToString:@"FavoritesSegue"])
     {

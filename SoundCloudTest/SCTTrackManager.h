@@ -18,6 +18,7 @@
 @interface SCTTrackManager : BeamAVMusicPlayerProvider <AVAudioPlayerDelegate>
 
 @property (nonatomic,strong) NSArray* favorites;
+@property (nonatomic,strong) NSArray* streamableFavorites;
 @property (nonatomic,strong) NSArray* fullTrackList;
 @property (nonatomic, strong) NSDictionary* userData;
 @property (nonatomic, strong) NSMutableArray* playQueue;

@@ -9,11 +9,11 @@ I wanted to create a way to queue up music that I normally listen to on soundclo
 
 Basically this app has a UI that allows users to queue a number of available streamable songs to play. 
 
-![Screenshot](http://i.imgur.com/8at8bMp.png)
-![Screenshot](http://i.imgur.com/j8kKpP2.png)
-![Screenshot](http://i.imgur.com/3KBls1r.png)
-![Screenshot](http://i.imgur.com/bfzZ16p.png)
-![Screenshot](http://i.imgur.com/yTyG4s9.png)
+![Screenshot](http://i.imgur.com/8at8bMp.png?1)
+![Screenshot](http://i.imgur.com/j8kKpP2.png?1)
+![Screenshot](http://i.imgur.com/3KBls1r.png?1)
+![Screenshot](http://i.imgur.com/bfzZ16p.png?1)
+![Screenshot](http://i.imgur.com/yTyG4s9.png?1)
 ## Setup
 
 This project is configured to run on ios7/64 bit. It should run out of the box. 

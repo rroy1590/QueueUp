@@ -67,13 +67,16 @@
                     progress:nil
                    completed:^(UIImage *maskImage, NSError *error, SDImageCacheType cacheType, BOOL finished) {
                        
+                       //This code takes the grey/white waveform png and uses it to mask the orange gradient bg
+                       
+                       //base orange color
                        UIImage *image = [UIImage imageNamed:@"list_bg.png"];
                        
                        CGImageRef originalMask = maskImage.CGImage;
                        CGRect crop = CGRectMake (0, 0, maskImage.size.width, maskImage.size.height/2);
                        originalMask = CGImageCreateWithImageInRect (originalMask, crop);
                        
-                       
+                       //create a mask using the waveform
                        CGImageRef mask = CGImageMaskCreate(CGImageGetWidth(originalMask),
                                                            CGImageGetHeight(originalMask),
                                                            CGImageGetBitsPerComponent(originalMask),
@@ -81,12 +84,17 @@
                                                            CGImageGetBytesPerRow(originalMask),
                                                            CGImageGetDataProvider(originalMask), nil, YES);
                        
+                       //create an image ref using the mask image and the orange bg
                        CGImageRef maskedImageRef = CGImageCreateWithMask(image.CGImage, mask);
                        
+                       //cocoa-ify thhe data
                        UIImage *finalImage = [UIImage imageWithCGImage:maskedImageRef scale:image.scale orientation:image.imageOrientation];
                        
+                       //release no longer needed refs
                        CGImageRelease(mask);
                        CGImageRelease(maskedImageRef);
+                       
+                       //update weakref to imageview
                        [imageViewToMask setImage:finalImage];
                    }];
     

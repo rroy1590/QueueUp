@@ -28,7 +28,6 @@ git clone git@github.com:rroy1590/QueueUp.git
 cd QueueUp
 git submodule init
 git submodule update
-open .
 ```
 
 ### In XCode

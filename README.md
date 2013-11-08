@@ -30,3 +30,4 @@ open .
 
 1. Make sure all projects are set to not only build active architecture, and that arm64 is enabled as a valid architecture for all project targets on iOS. (should not be necessary by default, this is incase you run into issues)
 
+![Screenshot](http://i.imgur.com/VLsaqm1.png)

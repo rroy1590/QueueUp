@@ -16,7 +16,9 @@ Basically this app has a UI that allows users to queue a number of available str
 ![Screenshot](http://i.imgur.com/yTyG4s9.png?2)
 ## Setup
 
-This project is configured to run on ios7/64 bit. It should run out of the box. 
+This project is configured to run on ios7/64 bit. UI only supports retina screens for now. 
+
+It should run out of the box. 
 
 ### In terminal
 
